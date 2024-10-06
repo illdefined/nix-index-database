@@ -12,6 +12,7 @@
         hash = generated.${system}.index;
         name = "nix-index";
 
+        recursiveHash = true;
         downloadToTemp = true;
         postFetch = ''
           mkdir -p "$out"

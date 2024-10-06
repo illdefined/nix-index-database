@@ -65,11 +65,9 @@ jobs:
         nix_path: nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz
     - uses: DeterminateSystems/magic-nix-cache-action@v8
     - run: |
-        tmp="$(mktemp -d)"
         nix shell --inputs-from . nixpkgs#nix-index -c \
-          nix-index --db "$tmp" --system ${{ matrix.system }} \
+          nix-index --db nix-index --system ${{ matrix.system }} \
           2>&1 | grep -F -v '+ generating index:'
-        mv "$tmp/files" index-${{ matrix.system }}
     - run: |
         nix shell --inputs-from . nixpkgs#nix-index -c \
           nix-channel-index \
@@ -80,10 +78,11 @@ jobs:
     - id: hash
       run: |
         cat >>"$GITHUB_OUTPUT" <<EOF
-        ${{ matrix.system }}-index=$(nix hash file index-${{ matrix.system }})
+        ${{ matrix.system }}-index=$(nix hash path nix-index)
         ${{ matrix.system }}-programs=$(nix hash file programs-${{ matrix.system }}.sqlite)
         ${{ matrix.system }}-debug=$(nix hash file debug-${{ matrix.system }}.sqlite)
         EOF
+    - run: mv nix-index/files index-${{ matrix.system }}
     - uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ needs.create-release.outputs.release_name }}
