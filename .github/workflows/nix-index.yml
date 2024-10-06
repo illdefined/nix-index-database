@@ -66,9 +66,17 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@v8
     - run: |
         tmp="$(mktemp -d)"
-        nix shell --inputs-from . nixpkgs#nix-index -c nix-index --db "$tmp" --system ${{ matrix.system }}
+        nix shell --inputs-from . nixpkgs#nix-index -c \
+          nix-index --db "$tmp" --system ${{ matrix.system }} \
+          2>&1 | grep -F -v '+ generating index:'
         mv "$tmp/files" index-${{ matrix.system }}
-    - run: nix shell --inputs-from . nixpkgs#nix-index -c nix-channel-index --output programs-${{ matrix.system }}.sqlite --debug-output debug-${{ matrix.system }}.sqlite --platform ${{ matrix.system }}
+    - run: |
+        nix shell --inputs-from . nixpkgs#nix-index -c \
+          nix-channel-index \
+          --output programs-${{ matrix.system }}.sqlite \
+          --debug-output debug-${{ matrix.system }}.sqlite \
+          --platform ${{ matrix.system }} \
+          2>&1 | grep -F -v '+ generating index:'
     - id: hash
       run: |
         cat >>"$GITHUB_OUTPUT" <<EOF
