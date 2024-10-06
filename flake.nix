@@ -8,7 +8,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nix-index-database = pkgs.fetchurl {
-        url = "${generated.url}/${system}-index";
+        url = "${generated.url}/index-${system}";
         hash = generated.${system}.index;
         name = "nix-index";
 
@@ -20,13 +20,13 @@
       };
 
       nix-channel-index-programs = pkgs.fetchurl {
-        url = "${generated.url}/${system}-programs.sqlite";
+        url = "${generated.url}/programs-${system}.sqlite";
         hash = generated.${system}.programs;
         name = "programs.sqlite";
       };
 
       nix-channel-index-debug = pkgs.fetchurl {
-        url = "${generated.url}/${system}-debug.sqlite";
+        url = "${generated.url}/debug-${system}.sqlite";
         hash = generated.${system}.debug;
         name = "debug.sqlite";
       };
