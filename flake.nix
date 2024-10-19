@@ -6,7 +6,10 @@
   in {
     packages = lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ] (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in lib.mapAttrs (name: drv: drv.overrideAttrs {
+      __structuredAttrs = true;
+      unsafeDiscardReferences.out = true;
+    }) {
       nix-index-database = pkgs.fetchurl {
         url = "${generated.url}/index-${system}";
         hash = generated.${system}.index;
