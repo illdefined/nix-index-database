@@ -1,27 +1,27 @@
 {
-  url = "https://github.com/illdefined/nix-index-database/releases/download/2025-01-20";
+  url = "https://github.com/illdefined/nix-index-database/releases/download/2025-01-27";
 
   x86_64-linux = {
-    index = "sha256-amx4+RkipyoVhcxnaIRkDeOzLZj38pI6mU8jfd2WsNY=";
-    programs = "sha256-a259fwpv6HPcF/2XCcOca+vApzPbo/TEddIEDbs+dxM=";
-    debug = "sha256-6HpLJ8X67tupZ/6dDK/iOQAAQAHpTeTIG59mkI7bvx0=";
+    index = "sha256-P5WHuru3v7e56glO9w/YAcVOL5E0nBir/g/3xcfAUQE=";
+    programs = "sha256-28HXf8pUwbDr45vLcvVP1s/Z4yhSj9zxi7mJKTFxr7E=";
+    debug = "sha256-2dNVipJhqofJlChlGH5VBu6Oh/nGaIdb4MImyrsdpOg=";
   };
 
   x86_64-darwin = {
-    index = "sha256-zd/ij1fcz0co7lLvcazAL28eVDfCn0DsHa9zx3qGcEQ=";
-    programs = "sha256-c4JpuAHeIDmUAZStUoZnzIIwZnB3raeJAvrPir+iWTY=";
+    index = "sha256-DrwklLMSBcA1+cxZY79ApNRQ1FbYWXub/gmTuA8Gl/Q=";
+    programs = "sha256-Kpdd204q2r4KUT8t9WbqVTKY/gMKZbtAnHYFy2wkVbk=";
     debug = "sha256-D+RRjgmXpjsr4XLue3CkMXHLKnmCxFpJmEu6UwQP6a0=";
   };
 
   aarch64-linux = {
-    index = "sha256-RqJzv8BDY+SFUem+6TJdtds+W1Xny0yR0Hk/4QDevjY=";
-    programs = "sha256-Dz1YTT4jf0/ZWvdV0VYZNF8V1PHH4Gmxa4v22O9+Hcs=";
-    debug = "sha256-b/igjNdIhpsEDXyLVER1CDmEuwnrhl63OkO3a4Vb2YA=";
+    index = "sha256-D7tK6EBSxVBCLtkxwtL3X/jtBDNdvvsWErypJhz7XCk=";
+    programs = "sha256-PPQBMt/9iUSmab6UpmheOAxfTMauZ0A+9LXMZIiw7h0=";
+    debug = "sha256-2HmpQ1DlWeg8MaSRsMSXnXLz/RTmRn19Sm2L7hh5jSU=";
   };
   
   aarch64-darwin = {
-    index = "sha256-2pGWqJv3S94N8MvZoTZaNLUqsyjK+jHedBXphlwueKo=";
-    programs = "";
-    debug = "";
+    index = "sha256-gmRHo8bOGmtSqLIr9xrQsI7Yq2wkoSjhitLjdzrbev4=";
+    programs = "sha256-le6RARXGpnA7vQhx9XBO4nsOlk6dqLZLiIrwAEVeIgg=";
+    debug = "sha256-D+RRjgmXpjsr4XLue3CkMXHLKnmCxFpJmEu6UwQP6a0=";
   };
 }
