@@ -12,16 +12,11 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
-    - run: |
-        curl --proto '=https' --tlsv1.3 -sSf -L https://install.lix.systems/lix \
-        | sh -s -- install --no-confirm --enable-flakes --nix-build-user-count "$(nproc || sysctl -n hw.ncpu)" \
-        --extra-conf "
-        access-tokens = github=${{ secrets.GITHUB_TOKEN }}
-        always-allow-substitutes = true
-        experimental-features = nix-command flakes
-        nix-path = nixpkgs=flake:nixpkgs
-        trusted-users = root $USER
-        "
+    - uses: illdefined/nix@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        extra-config: |
+          always-allow-substitutes = true
     - run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
@@ -59,16 +54,11 @@ jobs:
       aarch64-darwin-index: ${{ steps.hash.outputs.aarch64-darwin-index }}
     steps:
     - uses: actions/checkout@v4
-    - run: |
-        curl --proto '=https' --tlsv1.3 -sSf -L https://install.lix.systems/lix \
-        | sh -s -- install --no-confirm --enable-flakes --nix-build-user-count "$(nproc || sysctl -n hw.ncpu)" \
-        --extra-conf "
-        access-tokens = github=${{ secrets.GITHUB_TOKEN }}
-        always-allow-substitutes = true
-        experimental-features = nix-command flakes
-        nix-path = nixpkgs=flake:nixpkgs
-        trusted-users = root $USER
-        "
+    - uses: illdefined/nix@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        extra-config: |
+          always-allow-substitutes = true
     - uses: DeterminateSystems/magic-nix-cache-action@v8
     - run: |
         nix shell --inputs-from . nixpkgs#nix-index -c \
@@ -101,16 +91,11 @@ jobs:
       aarch64-darwin-debug: ${{ steps.hash.outputs.aarch64-darwin-debug }}
     steps:
     - uses: actions/checkout@v4
-    - run: |
-        curl --proto '=https' --tlsv1.3 -sSf -L https://install.lix.systems/lix \
-        | sh -s -- install --no-confirm --enable-flakes --nix-build-user-count "$(nproc || sysctl -n hw.ncpu)" \
-        --extra-conf "
-        access-tokens = github=${{ secrets.GITHUB_TOKEN }}
-        always-allow-substitutes = true
-        experimental-features = nix-command flakes
-        nix-path = nixpkgs=flake:nixpkgs
-        trusted-users = root $USER
-        "
+    - uses: illdefined/nix@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        extra-config: |
+          always-allow-substitutes = true
     - uses: DeterminateSystems/magic-nix-cache-action@v8
     - run: |
         nix shell --inputs-from . nixpkgs#nix-index -c \
@@ -139,16 +124,11 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
-    - run: |
-        curl --proto '=https' --tlsv1.3 -sSf -L https://install.lix.systems/lix \
-        | sh -s -- install --no-confirm --enable-flakes --nix-build-user-count "$(nproc || sysctl -n hw.ncpu)" \
-        --extra-conf "
-        access-tokens = github=${{ secrets.GITHUB_TOKEN }}
-        always-allow-substitutes = true
-        experimental-features = nix-command flakes
-        nix-path = nixpkgs=flake:nixpkgs
-        trusted-users = root $USER
-        "
+    - uses: illdefined/nix@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        extra-config: |
+          always-allow-substitutes = true
     - uses: DeterminateSystems/magic-nix-cache-action@v8
     - run: |
         cat >generated.nix <<EOF
